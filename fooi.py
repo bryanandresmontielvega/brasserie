@@ -146,4 +146,10 @@ if submitted:
                 f"<div style='color:#6c757d; font-size:12px'>{uren} uur</div></div>",
                 unsafe_allow_html=True,
             )
+        # Dataframe + download
+        df = pd.DataFrame(resultaten)
+        st.markdown("<div class='white-box'>Samenvatting</div>", unsafe_allow_html=True)
+        st.dataframe(df, use_container_width=True)
+        csv_bytes = df.to_csv(index=False).encode("utf-8")
+        st.download_button("Download CSV", csv_bytes, "fooiverdeling.csv", "text/csv")
 
